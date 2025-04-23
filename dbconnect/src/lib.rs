@@ -1,17 +1,17 @@
-use get_data;
-use set_data;
-use find;
-use group;
+pub mod get_data;
+pub mod set_data;
+pub mod find;
+pub mod group;
 
 pub mod connect {
-    pub struct dbconf {
+    pub struct DBConf {
         server: String,
         port: u32,
     }
 
-    impl dbconf {
-        pub fn new(server: String, port: u32) -> dbconf {
-            dbconf {
+    impl DBConf {
+        pub fn new(server: String, port: u32) -> DBConf {
+            DBConf {
                 server: server,
                 port: port,
             }
@@ -21,11 +21,9 @@ pub mod connect {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        
     }
 }

@@ -1,12 +1,20 @@
-use blogs;
-use api;
-use render;
+pub mod blogs;
+pub mod api;
+pub mod render;
+use serde_json::json;
+use actix_web::web;
 
 pub mod config_server {
     pub struct ServerConf {
         server_name: String,
         port: u32,
         base_dir: String,
+    }
+
+    pub struct Template {
+        title: String,
+        date: String,
+        content: json,
     }
 
     impl ServerConf {
@@ -18,6 +26,22 @@ pub mod config_server {
             }
         }
     }
+
+    impl Template {
+        pub fn new(title: String, date: String, content: json) -> Template {
+            Template {
+                title: title,
+                date: date,
+                content: content,
+            }
+        }
+    }
+}
+
+pub mod blog_config {
+    pub fn config(cfg: web::ServiceConfig) {
+        cfg.service(blogs::blog_conf);
+    }
 }
 
 #[cfg(test)]
@@ -26,7 +50,5 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
     }
 }
