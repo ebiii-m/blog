@@ -46,10 +46,10 @@ mod api_response {
 
     #[derive(Debug, Deserialize, Serialize)]
     pub struct ApiResponse {
-        status: String,
-        message: Option<String>,
-        rec_id: Option<String>,
-        data: Option<Value>,
+        pub status: String,
+        pub message: Option<String>,
+        pub rec_id: Option<String>,
+        pub data: Option<Value>,
     }
 }
 
